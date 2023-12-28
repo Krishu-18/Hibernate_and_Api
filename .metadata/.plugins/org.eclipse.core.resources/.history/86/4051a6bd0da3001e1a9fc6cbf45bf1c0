@@ -1,0 +1,21 @@
+package com.project.demo.entity;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "Tbl_actor")
+public class Actor {
+	@Id
+	@Column(name="actor_id")
+	private Integer actorId;
+	
+	@Column(name="actor_name",nullable=false,length=20)
+	private String actorName;
+	
+	@Column(name="actor_fees",length=10,precision=8)
+	private Double fees;
+	
+}

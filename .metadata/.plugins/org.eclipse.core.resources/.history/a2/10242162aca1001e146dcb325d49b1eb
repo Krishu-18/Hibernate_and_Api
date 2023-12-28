@@ -1,0 +1,20 @@
+package com.project.demo;
+import org.hibernate.SessionFactory;
+
+import com.project.demo.config.HibernateUtil;
+/**
+ * Hello world!
+ *
+ */
+public class App 
+{
+    public static void main( String[] args )
+    {
+    	SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        if(sessionFactory != null) {
+        	System.out.println("SessionFactory object created....");
+        }else {
+        	System.out.println("Something went wrong to create SessionFactory object....");
+        }
+    }
+}

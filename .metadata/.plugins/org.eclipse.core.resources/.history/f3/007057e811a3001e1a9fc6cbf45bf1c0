@@ -1,0 +1,27 @@
+package com.project.demo;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+
+import com.project.demo.entity.Actor;
+import com.project.demo.util.Methodutil;
+
+public class Methodcall {
+	private static void savemethod() {
+	SessionFactory sessionfactory = Methodutil.getSessionFactory();
+
+	Session session = sessionfactory.openSession();
+
+	Transaction tx = session.beginTransaction();
+	 
+	Actor a=new Actor("kjdf",2000.0);
+	
+	}
+	
+	public static void main(String[] args) {
+		savemethod();
+
+	}
+
+}

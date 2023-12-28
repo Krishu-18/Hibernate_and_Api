@@ -1,0 +1,89 @@
+package com.project.demo;
+
+import java.io.Serializable;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+
+import com.project.demo.entity.Actor;
+import com.project.demo.util.Methodutil;
+
+public class Methodcall {
+	public static void main(String[] args) {
+//		saveMethod();
+//		updateMethod();
+		getVsLoadMethods();
+//		deleteVsRemoveMethods();
+
+	}
+
+	private static void deleteVsRemoveMethods() {
+		SessionFactory sessionfactory = Methodutil.getSessionFactory();
+		Session session = sessionfactory.openSession();
+
+	}
+
+	private static void getVsLoadMethods() {
+		SessionFactory sessionfactory = Methodutil.getSessionFactory();
+		Session session = sessionfactory.openSession();
+		if (session != null) {
+			try {
+				Actor a = session.get(Actor.class, 5);
+				Actor a1 = session.load(Actor.class, 5);
+
+				System.out.println(a);
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	private static void updateMethod() {
+		SessionFactory sessionfactory = Methodutil.getSessionFactory();
+		Session session = sessionfactory.openSession();
+		Transaction tx = null;
+		if (session != null) {
+			try {
+				Actor a = new Actor(3, "Rajesh", 20050.0);
+				session.update(a);
+				tx = session.beginTransaction();
+				tx.commit();
+				session.close();
+			} catch (Exception e) {
+				if (tx != null) {
+					tx.rollback();
+				}
+			}
+		}
+
+	}
+
+	private static void saveMethod() {
+		SessionFactory sessionfactory = Methodutil.getSessionFactory();
+		Session session = sessionfactory.openSession();
+
+		Transaction tx = null;
+
+		if (session != null) {
+			try {
+				tx = session.beginTransaction();
+
+				Actor a = new Actor(3, "Rajesh", 200.0);
+				Actor a1 = new Actor(4, "Govinda", 4000.0);
+				session.save(a);
+				session.save(a1);
+				tx.commit();
+				session.close();
+
+			} catch (Exception e) {
+
+				if (tx != null)
+					tx.rollback();
+
+			}
+
+		}
+	}
+
+}

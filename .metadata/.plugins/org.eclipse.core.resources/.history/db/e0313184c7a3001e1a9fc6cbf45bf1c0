@@ -1,0 +1,70 @@
+package com.project.demo.entity;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "Tbl_actor")
+public class Actor {
+	@Id
+//	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "actor_id")
+	private Integer actorId;
+
+	@Column(name = "actor_name", nullable = false, length = 20)
+	private String actorName;
+
+	@Column(name = "actor_fees", length = 10, precision = 8)
+	private Double fees;
+
+	public Actor() {
+		super();
+	}
+
+	public Actor(Integer actorId, String actorName, Double fees) {
+		super();
+		this.actorId = actorId;
+		this.actorName = actorName;
+		this.fees = fees;
+	}
+
+	public Actor(String actorName, Double fees) {
+		super();
+		this.actorName = actorName;
+		this.fees = fees;
+	}
+
+	public Integer getActorId() {
+		return actorId;
+	}
+
+	public void setActorId(Integer actorId) {
+		this.actorId = actorId;
+	}
+
+	public String getActorName() {
+		return actorName;
+	}
+
+	public void setActorName(String actorName) {
+		this.actorName = actorName;
+	}
+
+	public Double getFees() {
+		return fees;
+	}
+
+	public void setFees(Double fees) {
+		this.fees = fees;
+	}
+
+	@Override
+	public String toString() {
+		return "Actor [actorId=" + actorId + ", actorName=" + actorName + ", fees=" + fees + "]";
+	}
+
+}

@@ -1,0 +1,48 @@
+package com.project.demo;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+
+import com.project.demo.entity.Actor;
+import com.project.demo.util.Methodutil;
+
+public class Methodcall {
+	public static void main(String[] args) {
+		saveMethod();
+		updatemethod();
+
+	}
+
+	private static void saveMethod() {
+		SessionFactory sessionfactory = Methodutil.getSessionFactory();
+		Session session = sessionfactory.openSession();
+
+		Transaction tx = null;
+
+		if (session != null) {
+			try {
+				tx = session.beginTransaction();
+
+				Actor a = new Actor(3, "Rajesh", 200.0);
+				Actor a1 = new Actor(4, "Govinda", 4000.0);
+				session.save(a);
+				session.save(a1);
+				tx.commit();
+				session.close();
+
+			} catch (Exception e) {
+				e.printStackTrace();
+				if (tx != null)
+					tx.rollback();
+
+			}
+
+		}
+	}
+
+	private static void updatemethod() {
+
+	}
+
+}
